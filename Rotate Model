@@ -1,0 +1,12 @@
+using UnityEngine;
+
+public class RotateModel : MonoBehaviour
+{
+    public float speed = 20f;   // Rotation speed
+
+    void Update()
+    {
+        // Rotate the model continuously
+        transform.Rotate(Vector3.up, speed * Time.deltaTime);
+    }
+}
