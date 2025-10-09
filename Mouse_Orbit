@@ -1,0 +1,23 @@
+using UnityEngine;
+
+public class MouseRotate : MonoBehaviour
+{
+    public Transform target;
+    public float rotationSpeed = 3.0f;
+    public float zoomSpeed = 2.0f;
+    private float distance = 10.0f;
+
+    void LateUpdate()
+    {
+        if (Input.GetMouseButton(0))
+        {
+            float rotX = Input.GetAxis("Mouse X") * rotationSpeed;
+            float rotY = -Input.GetAxis("Mouse Y") * rotationSpeed;
+            target.Rotate(rotY, rotX, 0, Space.World);
+        }
+
+        distance -= Input.GetAxis("Mouse ScrollWheel") * zoomSpeed;
+        distance = Mathf.Clamp(distance, 5, 20);
+        transform.position = target.position - transform.forward * distance;
+    }
+}
